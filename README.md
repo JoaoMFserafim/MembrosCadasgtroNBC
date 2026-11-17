@@ -1,73 +1,60 @@
-# React + TypeScript + Vite
+# NBC · Cadastro de Atletas
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Gestão de cadastros para o Novo Basquete Carmo
 
-Currently, two official plugins are available:
+Aplicação web para cadastrar e gerenciar informações de atletas, com atualização em tempo real via Cloud Firestore e exportação em PDF.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Funcionalidades
 
-## React Compiler
+- Cadastro, listagem, edição e exclusão de atletas.
+- Campos de identificação, contato e informações esportivas.
+- Máscaras para preenchimento de CPF, CEP e telefone.
+- Cálculo de idade a partir da data de nascimento.
+- Exportação da lista de atletas em PDF.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tecnologias
 
-## Expanding the ESLint configuration
+**React 19 · TypeScript · Vite · Tailwind CSS · Firebase / Firestore · jsPDF**
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Executar localmente
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Pré-requisitos: Node.js compatível com Vite 7 (20.19+ ou 22.12+), npm e um projeto Firebase para desenvolvimento.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+git clone https://github.com/JoaoMFserafim/MembrosCadasgtroNBC.git
+cd MembrosCadasgtroNBC
+npm ci
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Antes de iniciar, configure `firebase.ts` com um projeto de desenvolvimento próprio e habilite o Cloud Firestore. O serviço de persistência usa a coleção `atletas`.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+Abra o endereço informado pelo Vite.
+
+| Comando | Finalidade |
+| --- | --- |
+| `npm run dev` | Desenvolvimento local |
+| `npm run build` | Verificação TypeScript e build |
+| `npm run preview` | Prévia do build |
+| `npm run lint` | Análise estática |
+
+## Organização
+
+```text
+src/
+├── Pages/Cadastro/  # Interface de cadastro e listagem
+├── Types/           # Tipos dos atletas
+└── services/        # Integração com Firestore
+firebase.ts          # Inicialização do Firebase
+```
+
+## Demonstração e dados
+
+Para demonstrações de portfólio, utilize somente dados fictícios e um banco de desenvolvimento. O formulário contém campos pessoais; o acesso aos registros depende das regras e da configuração do Firestore.
+
+---
+
+Desenvolvido por [JoaoMFserafim](https://github.com/JoaoMFserafim).
